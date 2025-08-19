@@ -1,0 +1,64 @@
+# LiveKit Server Configuration
+# This file configures the LiveKit SFU server for audio rooms
+
+# API Keys for authentication
+keys:
+  # Development keys (for testing)
+  devkey: devsecret
+  
+  # Your custom keys
+  1ce934b063f8b1f74adde2b72d831aa1: 3cb5975d8f2e4a1b9c7d5e3f2a8b6c4d
+
+# Server configuration
+port: 7880
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 60000
+  use_external_ip: false  # Set to true in production with external IP
+
+# TURN server configuration (embedded)
+turn:
+  enabled: true
+  domain: localhost
+  tls_port: 5349
+  port: 3478
+  # For production, configure external TURN server:
+  # external_tls: true
+  # external_port: 443
+
+# Logging
+log_level: info
+log_json: false
+
+# Room configuration
+room:
+  auto_create: true
+  empty_timeout: 300  # 5 minutes
+  max_participants: 20
+  max_metadata_size: 1024
+
+# Media configuration
+media:
+  # Audio codecs
+  audio_codecs:
+    - opus
+    - pcmu
+    - pcma
+  
+  # Video codecs (for future video support)
+  video_codecs:
+    - h264
+    - vp8
+    - vp9
+
+# Redis configuration (for distributed deployment)
+redis:
+  address: localhost:6379
+  # password: your-redis-password
+  # db: 0
+
+# Health check
+health:
+  enabled: true
+  port: 7882 
